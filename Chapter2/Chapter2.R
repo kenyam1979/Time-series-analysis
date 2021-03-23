@@ -3,6 +3,25 @@ library(readxl)
 library(tsibble)
 library(forecast)
 
+## 2.1
+## ??
+
+## 2.2
+## a) MA    定常    反転不可
+## b) MA    定常    反転可
+## c) MA    定常    (省略)
+## d) AR    定常    
+## e) AR    非定常 
+## f) ARMA  定常    反転可
+
+
+## 2.3
+## (省略)
+
+
+## 2.4
+## (省略)
+
 
 ## 2.5
 economicdata <- read_excel("Data/economicdata.xls", 
@@ -105,3 +124,5 @@ model_auto <- auto.arima(arma$y3, trace=TRUE)
 Acf(model_auto$residuals)
 Box.test(model_auto$residuals, lag=10, type='Ljung-Box')
 
+
+rm(list=ls(all.names=TRUE))
