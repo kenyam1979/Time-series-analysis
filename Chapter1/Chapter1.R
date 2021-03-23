@@ -32,7 +32,7 @@ economicdata <- economicdata %>% rename(date=...1) %>% mutate(date=yearmonth(dat
 economicdata <- as_tsibble(economicdata)
 
 
-## 1) 
+### 1) 時系列のプロット
 economicdata %>%
   pivot_longer(cols=-date) %>%
   ggplot(aes(x=date, y=value)) + 
@@ -40,12 +40,12 @@ economicdata %>%
   facet_wrap(~name, scales='free')
   
   
-## 2)
+### 2) 階差の算出
 economicdata <- economicdata %>% 
   mutate(topix_log=log(topix), exrate_log=log(exrate), indprod_log=log(indprod)) %>%
   mutate(topix_d_log=topix_log-lag(topix_log), exrate_d_log=exrate_log-lag(exrate_log), indprod_d_log=indprod_log-lag(indprod_log))
 
-## 3)
+### 3) 階差のプロット
 economicdata %>%
   select(date, topix_d_log, exrate_d_log, indprod_d_log) %>%
   pivot_longer(cols=-date) %>%
@@ -53,14 +53,17 @@ economicdata %>%
   geom_line() + 
   facet_wrap(~name, scales='free')
 
-## 4)
+### 4) 階差系列の自己相関と検定
 Acf(economicdata$indprod_d_log)
 Box.test(economicdata$indprod_d_log, lag=log(25), type='Ljung-Box')
 
 
-## 5)
+### 5) 階差系列の自己相関と検定2
 Acf(economicdata$exrate_d_log)
 Box.test(economicdata$exrate_d_log, lag=log(25), type='Ljung-Box')
 
 Acf(economicdata$topix_d_log)
 Box.test(economicdata$topix_d_log, lag=log(25), type='Ljung-Box')
+
+
+rm(list=ls(all.names=TRUE))
