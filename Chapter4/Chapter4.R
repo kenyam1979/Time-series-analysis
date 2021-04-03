@@ -55,6 +55,7 @@ plot(fevd)
 
 
 
+
 ## 4.6
 ### 1) 対数差分
 data2 <- msci_day %>% 
