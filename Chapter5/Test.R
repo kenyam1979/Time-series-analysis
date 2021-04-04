@@ -1,6 +1,6 @@
 library(forecast)
 
-# Random walk
+## ランダムウォーク
 rw1 <- cumsum(rnorm(n=500))
 ts.plot(rw1)
 m1 <- arima(rw1, order=c(0,1,0))
@@ -17,8 +17,7 @@ adf.test(rw1)
 adf.test(na.omit(rw1-lag(rw1)))
 
 
-
-# Random walk with drift
+## ドリフトありのランダムウォーク
 rw2 <- cumsum(rnorm(n=500) + 0.1)
 ts.plot(rw2)
 
