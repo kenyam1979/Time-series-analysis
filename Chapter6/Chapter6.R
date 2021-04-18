@@ -61,15 +61,27 @@ ppp <- ppp %>% mutate(lrexjp=lcpijp - lcpius - lexjp)
 #### PPP仮説が成立していれば定常過程となっているはず
 
 ### 5) ADF検定
+ts.plot(ppp$lrexjp)
 adf.test(ppp$lrexjp) # 単位根
 
 ### 6) VECMでの検定
 library(urca)
 df <- ppp %>% select(lcpijp, lcpius, lexjp)
 m <- ca.jo(df, K=6)
-summary(m)
-#### r=0 (h=0)ということになっている
-#### PPP仮説がなりたってないということ？
+summary(m) # r<=1 (h<=1)で採択される→つまり今日和分ランク=1
+
+#### 最大固有値の固有ベクトル
+ppp <- ppp %>% mutate(lrexjp2=1.00000000*lcpijp-0.02892562*lcpius+0.07537271*lexjp)
+ts.plot(ppp$lrexjp2)
+adf.test(ppp$lrexjp2) # 定常
+
+#### 他の固有ベクトル
+s <- ppp %>% mutate(s=1.00000000*lcpijp-0.2519313*lcpius+0.3823289*lexjp) %>% pull(s)
+adf.test(s) # 単位根
+s <- ppp %>% mutate(s=1.00000000*lcpijp-0.7927706*lcpius-0.1300192*lexjp) %>% pull(s)
+adf.test(s) # 単位根
+
+
 
 
 ### 7) 
