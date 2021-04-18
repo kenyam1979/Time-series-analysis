@@ -23,3 +23,7 @@ s = 1.000*p + 0.7064995*q -3.6156063*r
 ts.plot(s)
 
 adf.test(s)
+
+## Reference
+## https://www.quantstart.com/articles/Johansen-Test-for-Cointegrating-Time-Series-Analysis-in-R/
+
