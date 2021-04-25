@@ -91,8 +91,9 @@ m <- ugarchfit(spec=spec,
 m
 plot(m)
 
-### 参考: https://www1.doshisha.ac.jp/~mjin/R/Chap_35/35.html
-### 参考: https://github.com/logics-of-blue/book-tsa-ssm-foundation/blob/master/book-data/3-3-ARCH%E3%83%BBGARCH%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E3%81%9D%E3%81%AE%E5%91%A8%E8%BE%BA.R
+### 参考
+### https://www1.doshisha.ac.jp/~mjin/R/Chap_35/35.html
+### https://github.com/logics-of-blue/book-tsa-ssm-foundation/blob/master/book-data/3-3-ARCH%E3%83%BBGARCH%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E3%81%9D%E3%81%AE%E5%91%A8%E8%BE%BA.R
 
 ### 5)
 #### プロット残差のAcfを確認
